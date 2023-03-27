@@ -12,13 +12,14 @@ public class MediaPlayer
     private boolean pausePlay;
 
 
+
+
     public MediaPlayer ()
     {
         offOn = false;
         user = new User()  ;
         pausePlay = false;
         songs = new Song();
-
     }
 
     public Song getSongs() {
@@ -68,5 +69,12 @@ public class MediaPlayer
         user.setSongsPlayed(0);
         user.setListenedTime(0);
     }
+
+
+
+
+
+
+
 }
 

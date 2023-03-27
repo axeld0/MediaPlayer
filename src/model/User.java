@@ -72,4 +72,5 @@ public class User
     public void setListenedTime(float listenedTime) {
         this.listenedTime = listenedTime;
     }
+
 }
