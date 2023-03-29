@@ -1,6 +1,7 @@
 import model.MediaPlayer;
 import model.Song;
 import model.User;
+
 import java.util.Scanner;
 
 public class Main
@@ -25,32 +26,52 @@ public class Main
     {
 
         scan = new Scanner(System.in);
-        signIn();  //signs in an user.
-        setSongs();  //loads song list
+        User user = new User();
+        MediaPlayer newMP = new MediaPlayer();
+        Song songArray [] = new Song[10];
+        signIn(newMP);  //signs in an user.
+        songArray = setSongs(songArray);  //loads song list. a method from media player object
+        playSong(newMP,songArray);
+
 
 
         scan.close();
     }
 
-
-    public static void signIn()
+    public static void signIn(MediaPlayer newMP)
     {
-        User user = new User();
-        MediaPlayer newMP = new MediaPlayer(); //creates the media player object
-        newMP.setOffOn(true);  //turns on the media player
+         //creates the media player object
+        //turns on the media player
         System.out.println("Welcome to Java MediaPlayer.\nPlease, sign in.\n Insert your name : ");
         String userName = scan.nextLine();
         System.out.println("\nExcelent! Now please insert your age :");
         int userAge = scan.nextInt();
         System.out.println("Great! One more question. What is your favourite genre?");
-        String userFavouriteGenre = scan.nextLine();
+        String userFavouriteGenre = scan.next();
         newMP.userRegistration(userName, userAge, userFavouriteGenre);  //imports a mediaPlayer.java method and sets the user's data
-
+        System.out.println("Welcome " + userName +" !");
     }
 
-    public static void setSongs()
+    public static int playSong (MediaPlayer newMP, Song [] songArray)
     {
+        System.out.println("\n\nWhat song do you want to play?\n");
+        int arraySize = songArray.length;
+        for(int i = 0 ; i < arraySize ; i++)
+        {
+            System.out.println("--" + (i+1) + ")"+ songArray[i].getTitle());  // prints the list of avalaible songs.
+        }
+        int selectedSong = scan.nextInt();
+
+        System.out.println("Great! You have selected --" + songArray[selectedSong-1].getTitle());
+
+        return selectedSong;  //returns the song selected
+    }
+    public static Song[] setSongs(Song [] songArray)
+    {
+        int arraySize = songArray.length;
+
         System.out.println("Loading Songs...\n\n");
+
         Song thrillIsGone = new Song("The thrill is gone", "Completely well", 1969, "B.B. King", "blues");
         Song igorsTheme = new Song("IGOR'S THEME" , "IGOR" , 2020, "Tyler the Creator", "rap" );
         Song toxic = new Song("Toxic", "In the Zone" , 2003 , "Britney Spears", "pop");
@@ -61,8 +82,21 @@ public class Main
         Song cryMeARiver = new Song("Cry Me a River", "Ella Fitzgerald", 1989, "Clap Hands, Here Comes Charlie", "Jazz");
         Song oneMoreTime = new Song("One More Time", "Discovery", 2001, "Daft Punk", "Dance");
         Song whatsMyAgeAgain = new Song("What's My Age Again?", "Enemy Of The State", 1999, "Blink 182", "Punk rock");
+
+        songArray[0]= thrillIsGone;
+        songArray[1]= igorsTheme;
+        songArray[2]= toxic;
+        songArray[3]= threeLittleBirds;
+        songArray[4]= virtualInsanity;
+        songArray[5]= paLaSeleccion;
+        songArray[6]= aquelloQuePaso;
+        songArray[7]= cryMeARiver;
+        songArray[8]= oneMoreTime;
+        songArray[9]= whatsMyAgeAgain;  //added the songs to the array
+
+        System.out.println("Songs successfully loaded!");
+
+        return songArray;
     }
-
-
 
 }

@@ -1,17 +1,16 @@
 package model;
 
 import javax.print.attribute.standard.Media;
+import java.util.ArrayList;
 
 public class MediaPlayer
 {
     private boolean offOn;
     User user;
 
-    Song songs;
+    ArrayList <Song> songArray;
 
     private boolean pausePlay;
-
-
 
 
     public MediaPlayer ()
@@ -19,26 +18,16 @@ public class MediaPlayer
         offOn = false;
         user = new User()  ;
         pausePlay = false;
-        songs = new Song();
+        ArrayList<Song> songArray = new ArrayList<Song>();
     }
 
-    public Song getSongs() {
-        return songs;
-    }
 
-    public void setSongs(Song songs) {
-        this.songs = songs;
-    }
 
-    public MediaPlayer(boolean offOn, User user, boolean pausePlay , Song songs) {
+    public MediaPlayer(boolean offOn, User user, ArrayList<Song> songArray, boolean pausePlay) {
         this.offOn = offOn;
         this.user = user;
+        this.songArray = songArray;
         this.pausePlay = pausePlay;
-        this.songs = songs;
-    }
-
-    public boolean isOffOn() {
-        return offOn;
     }
 
     public void setOffOn(boolean offOn) {
@@ -69,6 +58,9 @@ public class MediaPlayer
         user.setSongsPlayed(0);
         user.setListenedTime(0);
     }
+
+
+
 
 
 
